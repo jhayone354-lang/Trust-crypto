@@ -1055,20 +1055,17 @@
         <div class="calculator-card">
           <div class="calc-input-group">
             <label>Deposit Amount (USD)</label>
-            <input type="number" id="calcAmount" class="calc-input" value="5000" oninput="runCalculator()">
+            <input type="number" id="calcAmount" class="calc-input" value="200" min="200" step="50" oninput="runCalculator()">
           </div>
           <div class="calc-input-group">
-            <label>Select Plan Tier</label>
-            <select id="calcPlan" class="calc-input" style="font-size: 14px;" onchange="runCalculator()">
-              <option value="12.5-30">Starter Tier (12.5% ROI / 30 Days)</option>
-              <option value="28-60" selected>Growth Tier (28% ROI / 60 Days)</option>
-              <option value="52-90">Elite Tier (52% ROI / 90 Days)</option>
-            </select>
+            <label>Lock-in Duration</label>
+            <input type="text" class="calc-input" value="5 Weeks (35 Days)" disabled style="font-size: 14px; opacity: 0.8; cursor: not-allowed;">
           </div>
           <div class="calc-result-box">
-            <div class="calc-row"><span>Initial Deposit:</span><strong id="resDeposit">$5,000.00</strong></div>
-            <div class="calc-row"><span>Estimated Profit:</span><strong id="resProfit">$1,400.00</strong></div>
-            <div class="calc-row highlight"><span>Total Payout:</span><strong id="resTotal">$6,400.00</strong></div>
+            <div class="calc-row"><span>Initial Deposit:</span><strong id="resDeposit">$200.00</strong></div>
+            <div class="calc-row"><span>Daily Yield:</span><strong id="resDailyYield" style="color: #2563eb;">+$15.00/day</strong></div>
+            <div class="calc-row"><span>Total Profit (35 Days):</span><strong id="resProfit">+$525.00</strong></div>
+            <div class="calc-row highlight"><span>Total Payout:</span><strong id="resTotal">$725.00</strong></div>
           </div>
         </div>
       </section>
@@ -1450,6 +1447,11 @@
     let isVerifying = false;
     let selectedInvestAmount = 200;
 
+    // Run landing page calculator setup on load
+    window.addEventListener('DOMContentLoaded', () => {
+      runCalculator();
+    });
+
     // Deposit Notification Generator
     const depositAmounts = [200, 500, 1000, 1500, 2500, 3500, 5000];
     function triggerRandomDepositToast() {
@@ -1731,15 +1733,16 @@
 
     function runCalculator() {
       const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
-      const planVal = document.getElementById('calcPlan').value.split('-');
-      const roiPercent = parseFloat(planVal[0]);
       
-      const profit = amount * (roiPercent / 100);
+      // Calculations matching exact site Invest modal ($200 gives $15/day over 35 days)
+      const dailyYield = (amount / 200) * 15;
+      const profit = dailyYield * 35; // 5 weeks = 35 days
       const total = amount + profit;
 
-      document.getElementById('resDeposit').innerText = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-      document.getElementById('resProfit').innerText = `$${profit.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-      document.getElementById('resTotal').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+      document.getElementById('resDeposit').innerText = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resDailyYield').innerText = `+$${dailyYield.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/day`;
+      document.getElementById('resProfit').innerText = `+$${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resTotal').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
     }
   </script>
 </body>
