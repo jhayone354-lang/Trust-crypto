@@ -242,7 +242,7 @@
     .feature-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
     .feature-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
 
-    /* Landing Sections Styles */
+    /* New Landing Sections Styles */
     .logo-grid {
       display: flex;
       justify-content: space-around;
@@ -797,30 +797,6 @@
     .daily-yield-left { display: flex; align-items: center; gap: 10px; }
     .daily-yield-icon { width: 32px; height: 32px; background: #dcfce7; color: #16a34a; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
 
-    .yield-summary-card {
-      background: var(--bg-card-subtle);
-      border: 1px dashed #2563eb;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-top: 12px;
-      font-size: 12px;
-    }
-    .yield-summary-row {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 6px;
-      color: var(--text-muted);
-    }
-    .yield-summary-row strong { color: var(--text-main); }
-    .yield-summary-row.total {
-      margin-bottom: 0;
-      padding-top: 6px;
-      border-top: 1px solid var(--border-color);
-      font-size: 13px;
-      font-weight: 800;
-      color: #16a34a;
-    }
-
     /* DEPOSIT ADDRESS BOXES */
     .crypto-address-card {
       background: var(--bg-card-subtle);
@@ -1322,7 +1298,7 @@
       </div>
     </div>
 
-    <!-- INVEST MODAL WITH DYNAMIC SLIDER & 5-WEEK PROJECTION -->
+    <!-- INVEST MODAL WITH SLIDER ($200 to $5,000) -->
     <div class="modal-overlay" id="investModal">
       <div class="auth-card">
         <div class="auth-header">
@@ -1350,23 +1326,7 @@
               <div style="font-size: 11px; color: var(--text-muted);">Added automatically everyday</div>
             </div>
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: #16a34a;" id="dailyYieldDisplay">+$15.00/day</div>
-        </div>
-
-        <!-- Dynamic 5-Week Earnings Calculation Summary -->
-        <div class="yield-summary-card">
-          <div class="yield-summary-row">
-            <span>Duration Period:</span>
-            <strong>5 Weeks (35 Days)</strong>
-          </div>
-          <div class="yield-summary-row">
-            <span>Total Earnings (Yield):</span>
-            <strong id="totalYieldDisplay">+$525.00</strong>
-          </div>
-          <div class="yield-summary-row total">
-            <span>Total Return (Principal + Profit):</span>
-            <strong id="totalReturnDisplay">$725.00</strong>
-          </div>
+          <div style="font-size: 16px; font-weight: 800; color: #16a34a;">+$15.00/day</div>
         </div>
 
         <div class="notice-box">
@@ -1398,7 +1358,7 @@
             <i class="fa-brands fa-bitcoin" style="font-size: 18px;"></i>
             <span>Bitcoin (BTC) Address</span>
           </div>
-          <div class="address-value-box" id="btcAddressText">bc1qszdgrpkdr0vea2pvfveanqu99xffm4k39fjsgj</div>
+          <div class="address-value-box" id="btcAddressText">bc1qhnu4j2stdr6hnk5fvtmxfwfkdvklyf4gqh67la</div>
           <button class="btn-copy-address" onclick="copyAddress('btcAddressText')">
             <i class="fa-regular fa-copy"></i> Copy BTC Address
           </button>
@@ -1626,10 +1586,9 @@
       }
     }
 
-    /* DYNAMIC INVESTMENT CALCULATIONS */
+    /* INVESTMENT MODAL LOGIC */
     function openInvestModal() {
       document.getElementById('investModal').classList.add('active');
-      updateInvestAmount(document.getElementById('investSlider').value);
     }
 
     function closeInvestModal() {
@@ -1637,17 +1596,8 @@
     }
 
     function updateInvestAmount(val) {
-      selectedInvestAmount = parseFloat(val);
-      
-      // Calculations: $200 gives $15/day (7.5% daily yield)
-      const dailyYield = (selectedInvestAmount / 200) * 15;
-      const totalYield35Days = dailyYield * 35; // 5 weeks = 35 days
-      const totalReturn = selectedInvestAmount + totalYield35Days;
-
-      document.getElementById('sliderValue').innerText = `$${selectedInvestAmount.toLocaleString()}`;
-      document.getElementById('dailyYieldDisplay').innerText = `+$${dailyYield.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/day`;
-      document.getElementById('totalYieldDisplay').innerText = `+$${totalYield35Days.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-      document.getElementById('totalReturnDisplay').innerText = `$${totalReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      selectedInvestAmount = val;
+      document.getElementById('sliderValue').innerText = `$${parseFloat(val).toLocaleString()}`;
     }
 
     function confirmInvestment() {
@@ -1690,7 +1640,7 @@
             <div class="history-left">
               <div class="history-icon"><i class="fa-solid fa-clock"></i></div>
               <div class="history-details">
-                <h6>Deposit / Investment ($${selectedInvestAmount.toLocaleString()})</h6>
+                <h6>Deposit / Investment ($${selectedInvestAmount})</h6>
                 <p>${dateString}</p>
               </div>
             </div>
@@ -1709,7 +1659,7 @@
     }
 
     function handleWithdrawalClick() {
-      alert("Withdrawal Locked:\n1. Users are not allowed to withdraw until 5 weeks of investment.\n2. The lowest withdrawal threshold is $1,500.");
+      alert("Withdrawal Locked:\n1. Users are not allowed to withdraw until 5 weeks of investment.\n2. The lowest withdrawal threshold is $1500.");
     }
 
     function toggleAppearance() {
