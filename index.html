@@ -1,167 +1,1749 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Error: Deceptive Site Ahead</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRUST CRYPTO - High-Yield Investment & Secure Crypto Wallet</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-main: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border-color: #f1f5f9;
+      --border-harder: #e2e8f0;
+      --pill-bg: #ffffff;
+    }
 
-        body {
-            background-color: #d93025; /* Classic warning red */
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body.dark-mode {
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-subtle: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-light: #94a3b8;
+      --border-color: #334155;
+      --border-harder: #475569;
+      --pill-bg: #1e293b;
+    }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
 
-        .icon {
-            font-size: 64px;
-            margin-bottom: 24px;
-        }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
+    .app-container {
+      width: 100%;
+      max-width: 430px;
+      background: var(--bg-card);
+      min-height: 100vh;
+      position: relative;
+      box-shadow: 0 0 25px rgba(0,0,0,0.15);
+      overflow-x: hidden;
+      padding-bottom: 70px;
+    }
 
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
-            color: #fce8e6;
-        }
+    /* Landing Header */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+    }
 
-        .button-group {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-top: 32px;
-        }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
 
-        button {
-            padding: 12px 24px;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+    .brand-logo img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
 
-        .btn-safe {
-            background-color: #ffffff;
-            color: #d93025;
-            border: none;
-        }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .btn-safe:hover {
-            background-color: #f1f3f4;
-        }
+    .btn-text {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
 
-        .btn-details {
-            background-color: transparent;
-            color: #ffffff;
-            border: 1px solid #ffffff;
-        }
+    .btn-small-primary {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-        .btn-details:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 36px 20px 28px;
+      background: var(--bg-card);
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* Hidden details panel */
-        .details-box {
-            display: none;
-            margin-top: 20px;
-            padding: 16px;
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 4px;
-            font-size: 0.9rem;
-        }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
 
-        .details-box p {
-            margin-bottom: 12px;
-            color: #ffffff;
-        }
+    .floating-coin {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+      animation: floatAnimation 4s ease-in-out infinite alternate;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+    }
 
-        .unsafe-link {
-            color: #ffffff;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
+    @keyframes floatAnimation {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+      100% { transform: translateY(6px) rotate(-3deg); }
+    }
+
+    .coin-btc { top: 15px; left: 16px; width: 38px; height: 38px; background: #f7931a; font-size: 18px; }
+    .coin-sol { top: 25px; right: 24px; width: 30px; height: 30px; background: #4e44ce; font-size: 13px; }
+    .coin-usdt { top: 130px; left: 12px; width: 26px; height: 26px; background: #26a17b; font-size: 12px; }
+    .coin-bnb { top: 135px; right: 15px; width: 28px; height: 28px; background: #f3ba2f; font-size: 13px; }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: #2563eb;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text-main);
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-hero-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+      cursor: pointer;
+    }
+
+    .btn-hero-secondary {
+      width: 100%;
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-harder);
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .stats-banner {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: white;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: space-around;
+      text-align: center;
+    }
+
+    .stat-item h3 { font-size: 22px; font-weight: 800; color: #38bdf8; }
+    .stat-item p { font-size: 11px; color: #94a3b8; }
+
+    .section-container { padding: 32px 20px; border-bottom: 1px solid var(--border-color); }
+    .section-tag { text-align: center; font-size: 11px; font-weight: 700; color: #2563eb; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .section-title { text-align: center; font-size: 22px; font-weight: 800; color: var(--text-main); margin-bottom: 10px; }
+    .section-desc { text-align: center; font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
+
+    .feature-card { background: var(--bg-card-subtle); border: 1px solid var(--border-harder); border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+    .feature-icon { width: 36px; height: 36px; background: #dbeafe; color: #2563eb; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: 12px; }
+    .feature-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+    /* Landing Sections Styles */
+    .logo-grid {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 24px;
+      flex-wrap: wrap;
+    }
+    .logo-item {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-harder);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .key-metrics-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .metric-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .compare-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .compare-card {
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .compare-card.old-way {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+    .compare-card.new-way {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+    .compare-card h4 { font-size: 15px; margin-bottom: 10px; }
+    .compare-card ul { list-style: none; }
+    .compare-card li { font-size: 13px; margin-bottom: 8px; position: relative; padding-left: 20px; line-height: 1.4; }
+    .old-way li::before { content: "✕"; position: absolute; left: 0; color: #dc2626; font-weight: bold; }
+    .new-way li::before { content: "✓"; position: absolute; left: 0; color: #16a34a; font-weight: bold; }
+
+    .step-card {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .audience-card {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .audience-card h4 { font-size: 14px; color: #2563eb; margin-bottom: 4px; }
+    .audience-card p { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 0;
+    }
+    .faq-question { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+    .faq-answer { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+
+    /* Floating Deposit Notification Toast */
+    .toast-notification {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-harder);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1500;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease-in-out;
+      pointer-events: none;
+      max-width: 300px;
+    }
+    .toast-notification.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .toast-icon {
+      width: 32px;
+      height: 32px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+    .toast-text p { font-size: 12px; font-weight: 700; color: var(--text-main); }
+    .toast-text span { font-size: 10px; color: var(--text-light); }
+
+    /* Calculator */
+    .calculator-card { background: var(--bg-card); border: 1px solid var(--border-harder); border-radius: 16px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .calc-input-group { margin-bottom: 16px; }
+    .calc-input-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+    .calc-input { width: 100%; padding: 12px; border: 1px solid var(--border-harder); background: var(--bg-card); color: var(--text-main); border-radius: 10px; font-size: 16px; font-weight: 700; }
+    .calc-result-box { background: var(--bg-card-subtle); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-top: 16px; }
+    .calc-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+    .calc-row.highlight { font-size: 16px; font-weight: 800; color: #16a34a; border-top: 1px solid var(--border-color); padding-top: 8px; margin-bottom: 0; }
+
+    .cta-banner { background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; padding: 28px 20px; text-align: center; border-radius: 16px; margin: 20px; }
+    .cta-banner h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .cta-banner p { font-size: 13px; opacity: 0.9; margin-bottom: 18px; }
+
+    footer { padding: 20px; text-align: center; font-size: 12px; color: var(--text-light); }
+
+    /* Modals */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: flex-end; z-index: 1000; }
+    .modal-overlay.active { display: flex; }
+    .auth-card { background: var(--bg-card); width: 100%; max-width: 430px; border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 28px 24px 36px; animation: slideUp 0.3s ease-out forwards; max-height: 90vh; overflow-y: auto; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    .auth-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .close-btn { background: var(--bg-card-subtle); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--text-muted); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; }
+    .form-input { width: 100%; padding: 12px 14px; border: 1px solid var(--border-harder); background: var(--bg-card); color: var(--text-main); border-radius: 10px; font-size: 14px; outline: none; }
+    .auth-footer { text-align: center; margin-top: 16px; font-size: 13px; color: var(--text-muted); }
+    .auth-footer a { color: #2563eb; text-decoration: none; font-weight: 600; }
+
+    /* Security Check */
+    .robot-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(5px); display: none; justify-content: center; align-items: center; z-index: 2000; }
+    .robot-overlay.active { display: flex; }
+    .robot-card { background: var(--bg-card); width: 90%; max-width: 350px; border-radius: 16px; padding: 24px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2); text-align: center; }
+    .captcha-box { border: 1px solid var(--border-harder); background: var(--bg-card-subtle); border-radius: 12px; padding: 16px; display: flex; align-items: center; justify-content: space-between; margin: 18px 0; cursor: pointer; }
+    .captcha-left { display: flex; align-items: center; gap: 12px; }
+    .checkbox-trigger { width: 28px; height: 28px; border: 2px solid var(--border-harder); border-radius: 6px; background: var(--bg-card); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .checkbox-trigger.spinning { border-color: #2563eb; border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .checkbox-trigger.success { background: #22c55e; border-color: #22c55e; color: white; }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .status-msg { font-size: 13px; font-weight: 600; color: #16a34a; display: none; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; }
+    .status-msg.active { display: flex; }
+
+    /* DASHBOARD */
+    #dashboardView {
+      display: none;
+      background: var(--bg-main);
+      min-height: 100vh;
+      padding: 16px 16px 80px;
+    }
+
+    .app-top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .user-wallet-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--pill-bg);
+      padding: 6px 16px 6px 8px;
+      border-radius: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+    }
+
+    .wallet-avatar-icon {
+      width: 32px;
+      height: 32px;
+      background: #f97316;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .wallet-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .top-header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .icon-circle-btn {
+      width: 38px;
+      height: 38px;
+      background: var(--pill-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 15px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      cursor: pointer;
+    }
+
+    .spin-animation {
+      animation: spin 0.8s linear infinite;
+    }
+
+    .portfolio-summary {
+      margin-bottom: 20px;
+      padding-left: 4px;
+    }
+
+    .portfolio-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .portfolio-value {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.8px;
+      margin-bottom: 4px;
+    }
+
+    .portfolio-subtext {
+      font-size: 13px;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* 4 Grid Actions with SVG icons */
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .action-item {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 14px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .action-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .action-icon-wrapper svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .action-item:nth-child(1) .action-icon-wrapper { background: #eff6ff; fill: #2563eb; color: #2563eb; }
+    .action-item:nth-child(2) .action-icon-wrapper { background: #eff6ff; fill: #2563eb; color: #2563eb; }
+    .action-item:nth-child(3) .action-icon-wrapper { background: #eff6ff; fill: #2563eb; color: #2563eb; }
+    .action-item:nth-child(4) .action-icon-wrapper { background: #2563eb; fill: #ffffff; color: #ffffff; }
+
+    .action-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .tokens-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 0 4px;
+    }
+
+    .tokens-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .tokens-count {
+      font-size: 13px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .tokens-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .token-row {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      cursor: pointer;
+    }
+
+    .token-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .token-badge-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .bg-btc { background: #f7931a; }
+    .bg-eth { background: #627eea; }
+
+    .token-details h5 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .token-price-info {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .token-price {
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .badge-change {
+      font-weight: 700;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .badge-change.up { color: #16a34a; }
+    .badge-change.down { color: #dc2626; }
+
+    .token-right { text-align: right; }
+    .token-val-usd { font-size: 15px; font-weight: 800; color: var(--text-main); margin-bottom: 2px; }
+    .token-val-crypto { font-size: 12px; color: var(--text-light); font-weight: 600; }
+
+    /* Transactions History Section */
+    .history-section {
+      margin-top: 24px;
+    }
+
+    .history-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .history-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .history-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .history-icon {
+      width: 36px;
+      height: 36px;
+      background: #fef3c7;
+      color: #d97706;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .history-details h6 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .history-details p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .history-status-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #d97706;
+      background: #fffbeef0;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid #fde68a;
+    }
+
+    /* Bottom Nav Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0 12px;
+      z-index: 900;
+    }
+
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-light);
+      font-size: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-tab i { font-size: 18px; }
+    .nav-tab.active { color: #2563eb; }
+
+    /* SETTINGS VIEW */
+    #settingsView {
+      display: none;
+      background: var(--bg-main);
+      min-height: 100vh;
+      padding: 20px 16px 80px;
+    }
+
+    .settings-title { font-size: 24px; font-weight: 800; margin-bottom: 20px; color: var(--text-main); }
+    .settings-user-card { background: var(--bg-card); padding: 16px; border-radius: 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 24px; border: 1px solid var(--border-color); }
+    .settings-avatar { width: 44px; height: 44px; background: #2563eb; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+    .settings-section-title { font-size: 11px; font-weight: 700; color: var(--text-light); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .settings-group { background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color); margin-bottom: 20px; overflow: hidden; }
+    .settings-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid var(--border-color); font-size: 14px; color: var(--text-main); font-weight: 600; cursor: pointer; }
+    .settings-row i { color: var(--text-muted); margin-right: 10px; width: 18px; }
+
+    /* INVESTMENT MODAL & SLIDER STYLES */
+    .invest-slider-container { margin: 20px 0; text-align: center; }
+    .slider-display-box { font-size: 36px; font-weight: 800; color: #2563eb; margin: 10px 0; letter-spacing: -1px; }
+    .custom-range-slider { width: 100%; height: 8px; border-radius: 5px; background: var(--border-harder); outline: none; accent-color: #2563eb; cursor: pointer; }
+    .slider-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); font-weight: 600; margin-top: 6px; }
+
+    .notice-box {
+      background: #fffbeeb0;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    body.dark-mode .notice-box { background: #42200633; border-color: #78350f; }
+
+    .notice-box-title { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #d97706; margin-bottom: 4px; text-transform: uppercase; }
+    .notice-box-p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+    .daily-yield-badge {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 12px;
+    }
+
+    .daily-yield-left { display: flex; align-items: center; gap: 10px; }
+    .daily-yield-icon { width: 32px; height: 32px; background: #dcfce7; color: #16a34a; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+    .yield-summary-card {
+      background: var(--bg-card-subtle);
+      border: 1px dashed #2563eb;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    .yield-summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+    .yield-summary-row strong { color: var(--text-main); }
+    .yield-summary-row.total {
+      margin-bottom: 0;
+      padding-top: 6px;
+      border-top: 1px solid var(--border-color);
+      font-size: 13px;
+      font-weight: 800;
+      color: #16a34a;
+    }
+
+    /* DEPOSIT ADDRESS BOXES */
+    .crypto-address-card {
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-harder);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .crypto-address-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .address-value-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-all;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .btn-copy-address {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-harder);
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #2563eb;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Warning Icon -->
-        <div class="icon">⚠️</div>
+  <div class="app-container">
 
-        <!-- Main Warning Message -->
-        <h1>Deceptive site ahead</h1>
+    <!-- LANDING PAGE VIEW -->
+    <div id="landingView">
+      <header class="header-nav">
+        <div class="brand-logo">
+          <img src="https://i.ibb.co/9mdRM4nJ/polish-save.png" alt="TRUST CRYPTO Logo">
+          <span>TRUST CRYPTO</span>
+        </div>
+        <div class="nav-actions">
+          <button class="btn-text" onclick="openAuthModal('signin')">Sign in</button>
+          <button class="btn-small-primary" onclick="openAuthModal('signup')">Get Started</button>
+        </div>
+      </header>
+
+      <section class="hero-section">
+        <div class="floating-coin coin-btc">₿</div>
+        <div class="floating-coin coin-sol">≡</div>
+        <div class="floating-coin coin-usdt">T</div>
+        <div class="floating-coin coin-bnb">B</div>
+
+        <div class="hero-content">
+          <div class="badge-pill">
+            <i class="fa-solid fa-bolt"></i> Institutional Grade Crypto Yields
+          </div>
+          <h1 class="hero-title">Your Crypto.<br><span>Earning More.</span></h1>
+          <p class="hero-subtitle">Maximize digital asset yields with automated smart portfolios, cold storage protection, and daily payouts.</p>
+
+          <div class="hero-buttons">
+            <button class="btn-hero-primary" onclick="openAuthModal('signup')">Open Free Wallet →</button>
+            <button class="btn-hero-secondary" onclick="scrollToSection('calculator')">Calculate Earnings</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Social Proof & Authority Section -->
+      <section class="section-container">
+        <div class="section-tag">Social Proof & Authority</div>
+        <h2 class="section-title">Trusted by 10,000+ teams worldwide</h2>
+        <div class="logo-grid">
+          <div class="logo-item"><i class="fa-solid fa-building"></i> TechCorp</div>
+          <div class="logo-item"><i class="fa-solid fa-cube"></i> BlockInc</div>
+          <div class="logo-item"><i class="fa-solid fa-chart-line"></i> Apex Capital</div>
+          <div class="logo-item"><i class="fa-solid fa-vault"></i> SecureChain</div>
+          <div class="logo-item"><i class="fa-solid fa-globe"></i> GlobalTrust</div>
+        </div>
+        <div class="key-metrics-list">
+          <div class="metric-badge">
+            <i class="fa-solid fa-server" style="color: #2563eb;"></i>
+            <span>99.9% Uptime Reliability</span>
+          </div>
+          <div class="metric-badge">
+            <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+            <span>4.9/5 Rating from 2,000+ Reviews</span>
+          </div>
+          <div class="metric-badge">
+            <i class="fa-solid fa-gauge-high" style="color: #16a34a;"></i>
+            <span>10x Faster Workflow Execution</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="stats-banner">
+        <div class="stat-item"><h3>52%</h3><p>Max Annual ROI</p></div>
+        <div class="stat-item"><h3>$140M+</h3><p>Assets Managed</p></div>
+        <div class="stat-item"><h3>100+</h3><p>Coins Supported</p></div>
+      </div>
+
+      <!-- 3. The Core Problem vs. The Solution -->
+      <section class="section-container">
+        <div class="section-tag">Comparison</div>
+        <h2 class="section-title">The Old Way vs. The New Way</h2>
+        <div class="compare-container">
+          <div class="compare-card old-way">
+            <h4>The Old Way (The Problem)</h4>
+            <ul>
+              <li>Fragmented tools that don't talk to each other.</li>
+              <li>Hours wasted on manual, repetitive tasks.</li>
+              <li>Lack of visibility into project progress and results.</li>
+            </ul>
+          </div>
+          <div class="compare-card new-way">
+            <h4>The New Way (Your Platform)</h4>
+            <ul>
+              <li>One unified workspace where everything connects seamlessly.</li>
+              <li>Intelligent automation that handles busywork behind the scenes.</li>
+              <li>Real-time analytics that show you exactly what's working.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Deep-Dive Feature Breakdown -->
+      <section class="section-container">
+        <div class="section-tag">Features</div>
+        <h2 class="section-title">Deep-Dive Feature Breakdown</h2>
         
-        <p>
-            Attackers on <strong>https://trustedcrypto.netlify.app</strong> may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards). host using .com then you redeploy your site
-        </p>
-
-        <!-- Action Buttons -->
-        <div class="button-group">
-            <button class="btn-safe" onclick="goBack()">Back to safety</button>
-            <button class="btn-details" onclick="toggleDetails()">Details</button>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-robot"></i></div>
+          <h4>Feature 1: Smart Automation & Workflows</h4>
+          <p><strong>Overview:</strong> Eliminate manual effort with built-in triggers and actions. Set up customized rules in seconds.</p>
+          <p style="margin-top: 6px; color: #2563eb; font-weight: 600;">Key Benefit: Save up to 15 hours per week per team member.</p>
         </div>
 
-        <!-- Hidden Details Box (Revealed when clicking "Details") -->
-        <div id="detailsBox" class="details-box">
-            <p>
-                Google Safe Browsing recently detected phishing on this site. Phishing sites pretend to be other websites to deceive you.
-            </p>
-            <p>
-                If you understand the risks to your security, you may <span class="unsafe-link" onclick="proceedUnsafe()">visit this unsafe site</span>.
-            </p>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+          <h4>Feature 2: Real-Time Collaboration</h4>
+          <p><strong>Overview:</strong> Work together effortlessly. Shared dashboards, instant commenting, and real-time edits keep everyone aligned.</p>
+          <p style="margin-top: 6px; color: #2563eb; font-weight: 600;">Key Benefit: Reduce back-and-forth emails and missed deadlines.</p>
         </div>
+
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-chart-pie"></i></div>
+          <h4>Feature 3: Actionable Analytics & Reporting</h4>
+          <p><strong>Overview:</strong> Turn raw data into clear insights with customizable charts and automated weekly digests.</p>
+          <p style="margin-top: 6px; color: #2563eb; font-weight: 600;">Key Benefit: Make data-driven decisions with total confidence.</p>
+        </div>
+      </section>
+
+      <!-- 5. How It Works (Step-by-Step) -->
+      <section class="section-container">
+        <div class="section-tag">Process</div>
+        <h2 class="section-title">How It Works</h2>
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">Connect Your Tools</h4>
+            <p style="font-size: 13px; color: var(--text-muted);">Import existing data and connect your favorite apps in under two minutes.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">Customize Your Workspace</h4>
+            <p style="font-size: 13px; color: var(--text-muted);">Pick pre-built templates or design your own workflow tailored to your team.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div>
+            <h4 style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">Automate & Scale</h4>
+            <p style="font-size: 13px; color: var(--text-muted);">Let automated workflows handle routine tasks while you focus on high-impact work.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Who It's Built For -->
+      <section class="section-container">
+        <div class="section-tag">Target Audience</div>
+        <h2 class="section-title">Who It's Built For</h2>
+        <div class="audience-card">
+          <h4>For Founders & Leaders</h4>
+          <p>Gain complete oversight and scale operations without increasing overhead.</p>
+        </div>
+        <div class="audience-card">
+          <h4>For Product & Tech Teams</h4>
+          <p>Streamline handoffs, track updates, and ship features faster.</p>
+        </div>
+        <div class="audience-card">
+          <h4>For Marketing & Sales</h4>
+          <p>Manage campaigns, track leads, and measure ROI from a single hub.</p>
+        </div>
+      </section>
+
+      <!-- 7. Customer Stories & Testimonials -->
+      <section class="section-container">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">Customer Stories</h2>
+        <div class="feature-card">
+          <p style="font-style: italic; margin-bottom: 10px;">"TRUST CRYPTO completely transformed our operations. The automated yields and workflow transparency saved us hundreds of hours."</p>
+          <h5 style="font-size: 13px; font-weight: 700;">— Sarah Jenkins, COO at FinTech Flow</h5>
+        </div>
+        <div class="feature-card">
+          <p style="font-style: italic; margin-bottom: 10px;">"The daily yield compounding is unmatched. Hands-down the most intuitive platform our team has used."</p>
+          <h5 style="font-size: 13px; font-weight: 700;">— Marcus Vance, Managing Director</h5>
+        </div>
+      </section>
+
+      <!-- Calculator Section -->
+      <section id="calculator" class="section-container">
+        <div class="section-tag">Projections</div>
+        <h2 class="section-title">Investment Calculator</h2>
+        <div class="calculator-card">
+          <div class="calc-input-group">
+            <label>Deposit Amount (USD)</label>
+            <input type="number" id="calcAmount" class="calc-input" value="200" min="200" step="50" oninput="runCalculator()">
+          </div>
+          <div class="calc-input-group">
+            <label>Lock-in Duration</label>
+            <input type="text" class="calc-input" value="5 Weeks (35 Days)" disabled style="font-size: 14px; opacity: 0.8; cursor: not-allowed;">
+          </div>
+          <div class="calc-result-box">
+            <div class="calc-row"><span>Initial Deposit:</span><strong id="resDeposit">$200.00</strong></div>
+            <div class="calc-row"><span>Daily Yield:</span><strong id="resDailyYield" style="color: #2563eb;">+$15.00/day</strong></div>
+            <div class="calc-row"><span>Total Profit (35 Days):</span><strong id="resProfit">+$525.00</strong></div>
+            <div class="calc-row highlight"><span>Total Payout:</span><strong id="resTotal">$725.00</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. Frequently Asked Questions (FAQ) -->
+      <section class="section-container">
+        <div class="section-tag">Support</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+          <div class="faq-question">Do I need technical skills to get started?</div>
+          <div class="faq-answer">Not at all. The setup process is completely visual with zero coding required.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Can I try it before committing to a plan?</div>
+          <div class="faq-answer">Yes, every new account starts with a full-featured 14-day free trial.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">How does team pricing work?</div>
+          <div class="faq-answer">You only pay for active seats, and you can upgrade or downgrade at any time.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">Is my data secure?</div>
+          <div class="faq-answer">We enforce enterprise-grade security, including end-to-end encryption and regular security audits.</div>
+        </div>
+      </section>
+
+      <!-- 9. Final Call to Action -->
+      <div class="cta-banner">
+        <h3>Ready to transform the way you work?</h3>
+        <p>Join thousands of teams who have already streamlined their workflow.</p>
+        <button class="btn-hero-primary" style="background: white; color: #2563eb;" onclick="openAuthModal('signup')">Get Started Free →</button>
+      </div>
+
+      <footer>&copy; 2026 TRUST CRYPTO. All rights reserved.</footer>
     </div>
 
-    <script>
-        // Go back to previous page or blank screen
-        function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                alert("Redirecting you to safety...");
-                window.location.href = "https://www.google.com";
-            }
+    <!-- LOGGED IN USER DASHBOARD VIEW -->
+    <div id="dashboardView">
+      <div class="app-top-header">
+        <div class="user-wallet-pill">
+          <div class="wallet-avatar-icon"><i class="fa-solid fa-user"></i></div>
+          <span class="wallet-name" id="walletLabelName">User Wallet</span>
+          <i class="fa-solid fa-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
+        </div>
+        <div class="top-header-actions">
+          <div class="icon-circle-btn" onclick="refreshDashboardData(this)" title="Refresh Data">
+            <i class="fa-solid fa-rotate-left"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-summary">
+        <div class="portfolio-label">Total Portfolio Value</div>
+        <div class="portfolio-value" id="userPortfolioVal">$0.00</div>
+        <div class="portfolio-subtext" id="portfolioSubtext">Updated just now</div>
+      </div>
+
+      <!-- Quick Actions Grid with Custom SVG Icons -->
+      <div class="action-grid">
+        <div class="action-item" onclick="openDepositModal()">
+          <div class="action-icon-wrapper">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+            </svg>
+          </div>
+          <span class="action-label">Deposit</span>
+        </div>
+        <div class="action-item" onclick="handleWithdrawalClick()">
+          <div class="action-icon-wrapper">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 15h4v6h2v-6h4l-7-7-7 7zM5 4v2h14V4H5z"/>
+            </svg>
+          </div>
+          <span class="action-label">Withdrawal</span>
+        </div>
+        <div class="action-item" onclick="switchDashboardTab('swap')">
+          <div class="action-icon-wrapper">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
+            </svg>
+          </div>
+          <span class="action-label">Swap</span>
+        </div>
+        <div class="action-item" onclick="openInvestModal()">
+          <div class="action-icon-wrapper">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </svg>
+          </div>
+          <span class="action-label">Invest</span>
+        </div>
+      </div>
+
+      <!-- Tokens Header -->
+      <div class="tokens-header">
+        <span class="tokens-title">Tokens</span>
+        <span class="tokens-count">2 assets</span>
+      </div>
+
+      <!-- Tokens List -->
+      <div class="tokens-list">
+        <!-- Bitcoin -->
+        <div class="token-row">
+          <div class="token-left">
+            <div class="token-badge-icon bg-btc">₿</div>
+            <div class="token-details">
+              <h5>Bitcoin</h5>
+              <div class="token-price-info">
+                <span class="token-price">$64,179.00</span>
+                <span class="badge-change down"><i class="fa-solid fa-caret-down"></i> 2.34%</span>
+              </div>
+            </div>
+          </div>
+          <div class="token-right">
+            <div class="token-val-usd">$0.00</div>
+            <div class="token-val-crypto">0.0000 BTC</div>
+          </div>
+        </div>
+
+        <!-- Ethereum -->
+        <div class="token-row">
+          <div class="token-left">
+            <div class="token-badge-icon bg-eth">Ξ</div>
+            <div class="token-details">
+              <h5>Ethereum</h5>
+              <div class="token-price-info">
+                <span class="token-price">$3,440.00</span>
+                <span class="badge-change up"><i class="fa-solid fa-caret-up"></i> 1.87%</span>
+              </div>
+            </div>
+          </div>
+          <div class="token-right">
+            <div class="token-val-usd">$0.00</div>
+            <div class="token-val-crypto">0.0000 ETH</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- History Section -->
+      <div class="history-section">
+        <div class="history-title">Transaction History</div>
+        <div id="historyList">
+          <p style="font-size: 12px; color: var(--text-light); text-align: center; padding: 10px 0;">No transactions yet</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS VIEW SCREEN -->
+    <div id="settingsView">
+      <h2 class="settings-title">Settings</h2>
+      
+      <div class="settings-user-card">
+        <div class="settings-avatar" id="settingAvatar">U</div>
+        <div>
+          <h4 id="settingUserName" style="font-size: 16px; font-weight: 700; color: var(--text-main);">User test</h4>
+          <p id="settingUserEmail" style="font-size: 13px; color: var(--text-muted);">chimaicloud@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="settings-section-title">Preferences</div>
+      <div class="settings-group">
+        <div class="settings-row">
+          <span><i class="fa-solid fa-globe"></i> Language</span>
+          <span style="color: var(--text-light); font-size: 13px;">English</span>
+        </div>
+        <div class="settings-row" onclick="toggleAppearance()">
+          <span><i class="fa-solid fa-moon"></i> Appearance</span>
+          <span id="appearanceLabel" style="color: var(--text-light); font-size: 13px;">Light</span>
+        </div>
+        <div class="settings-row">
+          <span><i class="fa-solid fa-eye-slash"></i> Hide Balance</span>
+          <input type="checkbox">
+        </div>
+      </div>
+
+      <div class="settings-section-title">Notifications</div>
+      <div class="settings-group">
+        <div class="settings-row">
+          <span><i class="fa-solid fa-bell"></i> Push Notifications</span>
+          <input type="checkbox" checked>
+        </div>
+        <div class="settings-row">
+          <span><i class="fa-solid fa-envelope"></i> Email Notifications</span>
+          <input type="checkbox" checked>
+        </div>
+      </div>
+
+      <button class="btn-hero-primary" style="background: #ef4444; width: 100%; margin-top: 20px;" onclick="handleLogout()">Log Out</button>
+    </div>
+
+    <!-- BOTTOM FIXED NAV BAR -->
+    <div class="bottom-nav" id="bottomAppNav" style="display: none;">
+      <div class="nav-tab active" onclick="switchDashboardTab('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-tab" onclick="switchDashboardTab('invest')">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Invest</span>
+      </div>
+      <div class="nav-tab" onclick="switchDashboardTab('swap')">
+        <i class="fa-solid fa-rotate"></i>
+        <span>Swap</span>
+      </div>
+      <div class="nav-tab" onclick="switchDashboardTab('settings')">
+        <i class="fa-solid fa-gear"></i>
+        <span>Settings</span>
+      </div>
+    </div>
+
+    <!-- LIVE DEPOSIT NOTIFICATION TOAST -->
+    <div class="toast-notification" id="toastDeposit">
+      <div class="toast-icon"><i class="fa-solid fa-arrow-down"></i></div>
+      <div class="toast-text">
+        <p id="toastMessage">User 465 deposited $500</p>
+        <span>Just now</span>
+      </div>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div class="modal-overlay" id="authModal">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h3 id="authModalTitle" style="color: var(--text-main);">Welcome back</h3>
+          <button class="close-btn" onclick="closeAuthModal()">✕</button>
+        </div>
+
+        <form id="authForm" onsubmit="handleAuthSubmit(event)">
+          <div class="form-group" id="nameGroup" style="display: none;">
+            <label>Full Name</label>
+            <input type="text" id="inputName" class="form-input" placeholder="John Doe">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="inputEmail" class="form-input" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="inputPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-hero-primary" style="width: 100%; margin-top: 10px;" id="authSubmitBtn">Sign In →</button>
+        </form>
+
+        <div class="auth-footer" id="authFooter">
+          Don't have an account? <a href="#" onclick="switchAuthMode('signup')">Create one</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- INVEST MODAL WITH DYNAMIC SLIDER & 5-WEEK PROJECTION -->
+    <div class="modal-overlay" id="investModal">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h3 style="color: var(--text-main);">Invest Capital</h3>
+          <button class="close-btn" onclick="closeInvestModal()">✕</button>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-muted);">Select how much you would like to invest into your high-yield portfolio.</p>
+
+        <div class="invest-slider-container">
+          <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Investment Amount</div>
+          <div class="slider-display-box" id="sliderValue">$200</div>
+          <input type="range" min="200" max="5000" step="50" value="200" class="custom-range-slider" id="investSlider" oninput="updateInvestAmount(this.value)">
+          <div class="slider-labels">
+            <span>$200 (Min)</span>
+            <span>$5,000 (Max)</span>
+          </div>
+        </div>
+
+        <div class="daily-yield-badge">
+          <div class="daily-yield-left">
+            <div class="daily-yield-icon"><i class="fa-solid fa-coins"></i></div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Daily Yield</div>
+              <div style="font-size: 11px; color: var(--text-muted);">Added automatically everyday</div>
+            </div>
+          </div>
+          <div style="font-size: 16px; font-weight: 800; color: #16a34a;" id="dailyYieldDisplay">+$15.00/day</div>
+        </div>
+
+        <!-- Dynamic 5-Week Earnings Calculation Summary -->
+        <div class="yield-summary-card">
+          <div class="yield-summary-row">
+            <span>Duration Period:</span>
+            <strong>5 Weeks (35 Days)</strong>
+          </div>
+          <div class="yield-summary-row">
+            <span>Total Earnings (Yield):</span>
+            <strong id="totalYieldDisplay">+$525.00</strong>
+          </div>
+          <div class="yield-summary-row total">
+            <span>Total Return (Principal + Profit):</span>
+            <strong id="totalReturnDisplay">$725.00</strong>
+          </div>
+        </div>
+
+        <div class="notice-box">
+          <div class="notice-box-title">
+            <i class="fa-solid fa-lock"></i> 5-Week Lock-in Period
+          </div>
+          <div class="notice-box-p">
+            <strong>NOTICE:</strong> Users are not allowed to withdraw funds until the <strong>5-week period</strong> elapses. Minimum withdrawal overall is <strong>$1,500</strong>.
+          </div>
+        </div>
+
+        <button class="btn-hero-primary" style="width: 100%; margin-top: 20px;" onclick="confirmInvestment()">Confirm Investment →</button>
+      </div>
+    </div>
+
+    <!-- DEPOSIT MODAL WITH BITCOIN & ETHEREUM ADDRESSES -->
+    <div class="modal-overlay" id="depositModal">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h3 style="color: var(--text-main);">Deposit Wallet Address</h3>
+          <button class="close-btn" onclick="closeDepositModal()">✕</button>
+        </div>
+
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Please send your investment or deposit to any of the addresses below:</p>
+
+        <!-- BTC Address Box -->
+        <div class="crypto-address-card">
+          <div class="crypto-address-header" style="color: #f7931a;">
+            <i class="fa-brands fa-bitcoin" style="font-size: 18px;"></i>
+            <span>Bitcoin (BTC) Address</span>
+          </div>
+          <div class="address-value-box" id="btcAddressText">bc1qt7zlwlmamph8vt4d0dwdjjnq8yehgvjr6883va</div>
+          <button class="btn-copy-address" onclick="copyAddress('btcAddressText')">
+            <i class="fa-regular fa-copy"></i> Copy BTC Address
+          </button>
+        </div>
+
+        <!-- ETH Address Box -->
+        <div class="crypto-address-card">
+          <div class="crypto-address-header" style="color: #627eea;">
+            <i class="fa-brands fa-ethereum" style="font-size: 18px;"></i>
+            <span>Ethereum (ETH) Address</span>
+          </div>
+          <div class="address-value-box" id="ethAddressText">0x04065cCfbbcccaD53102B98ADE0e0644E088367C</div>
+          <button class="btn-copy-address" onclick="copyAddress('ethAddressText')">
+            <i class="fa-regular fa-copy"></i> Copy ETH Address
+          </button>
+        </div>
+
+        <button class="btn-hero-primary" style="width: 100%; margin-top: 10px;" id="havePaidBtn" onclick="handleHavePaid()">Have you paid?</button>
+      </div>
+    </div>
+
+    <!-- ROBOT SECURITY MODAL -->
+    <div class="robot-overlay" id="robotModal">
+      <div class="robot-card">
+        <h4 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Security Check</h4>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Please complete verification to proceed</p>
+
+        <div class="captcha-box" onclick="triggerRobotCheck()">
+          <div class="captcha-left">
+            <div class="checkbox-trigger" id="checkboxBox"></div>
+            <span class="captcha-text" style="font-size: 14px; font-weight: 600; color: var(--text-main);">I'm not a robot</span>
+          </div>
+          <div style="font-size: 8px; color: var(--text-light); font-weight: 700; text-align: center;">
+            <i class="fa-solid fa-shield-halved" style="font-size: 18px; color: #2563eb;"></i><br>reCAPTCHA
+          </div>
+        </div>
+
+        <div class="status-msg" id="statusMsg">
+          <i class="fa-solid fa-circle-check"></i> <span id="statusText">Login Successful!</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentAuthMode = 'signin';
+    let pendingAuthData = null;
+    let isVerifying = false;
+    let selectedInvestAmount = 200;
+
+    // Run landing page calculator setup on load
+    window.addEventListener('DOMContentLoaded', () => {
+      runCalculator();
+    });
+
+    // Deposit Notification Generator
+    const depositAmounts = [200, 500, 1000, 1500, 2500, 3500, 5000];
+    function triggerRandomDepositToast() {
+      const toast = document.getElementById('toastDeposit');
+      const toastMsg = document.getElementById('toastMessage');
+      
+      const randomUser = Math.floor(Math.random() * 800) + 100;
+      const randomAmount = depositAmounts[Math.floor(Math.random() * depositAmounts.length)];
+      
+      toastMsg.innerText = `User ${randomUser} deposited $${randomAmount.toLocaleString()}`;
+      toast.classList.add('active');
+
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 4000);
+    }
+
+    // Trigger first notification shortly after load, then periodically
+    setTimeout(() => {
+      triggerRandomDepositToast();
+      setInterval(triggerRandomDepositToast, 9000);
+    }, 2000);
+
+    function openAuthModal(mode) {
+      switchAuthMode(mode);
+      document.getElementById('authModal').classList.add('active');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.remove('active');
+    }
+
+    function switchAuthMode(mode) {
+      currentAuthMode = mode;
+      const title = document.getElementById('authModalTitle');
+      const nameGroup = document.getElementById('nameGroup');
+      const submitBtn = document.getElementById('authSubmitBtn');
+      const footer = document.getElementById('authFooter');
+
+      const savedUser = JSON.parse(localStorage.getItem('trust_crypto_user') || 'null');
+
+      if (mode === 'signup') {
+        title.innerText = "Create Account";
+        nameGroup.style.display = "block";
+        submitBtn.innerText = "Get Started →";
+        footer.innerHTML = 'Already have an account? <a href="#" onclick="switchAuthMode(\'signin\')">Sign in</a>';
+      } else {
+        title.innerText = "Welcome back";
+        nameGroup.style.display = "none";
+        submitBtn.innerText = "Sign In →";
+        footer.innerHTML = 'Don\'t have an account? <a href="#" onclick="switchAuthMode(\'signup\')">Create one</a>';
+
+        if (savedUser) {
+          document.getElementById('inputEmail').value = savedUser.email || '';
+          document.getElementById('inputPassword').value = savedUser.password || '';
+        }
+      }
+    }
+
+    function handleAuthSubmit(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('inputEmail').value.trim();
+      const password = document.getElementById('inputPassword').value.trim();
+      const name = document.getElementById('inputName').value.trim();
+
+      if (currentAuthMode === 'signup') {
+        pendingAuthData = { mode: 'signup', user: { name: name || 'User test', email: email, password: password } };
+        openRobotModal();
+      } else {
+        const savedUser = JSON.parse(localStorage.getItem('trust_crypto_user') || 'null');
+        
+        if (savedUser && savedUser.email === email && savedUser.password === password) {
+          pendingAuthData = { mode: 'signin', user: savedUser };
+          openRobotModal();
+        } else if (savedUser) {
+          alert("Invalid password or email address.");
+        } else {
+          pendingAuthData = { mode: 'signin', user: { name: 'User test', email: email } };
+          openRobotModal();
+        }
+      }
+    }
+
+    function openRobotModal() {
+      const box = document.getElementById('checkboxBox');
+      const statusMsg = document.getElementById('statusMsg');
+      box.className = 'checkbox-trigger';
+      box.innerHTML = '';
+      statusMsg.classList.remove('active');
+      isVerifying = false;
+
+      document.getElementById('robotModal').classList.add('active');
+    }
+
+    function triggerRobotCheck() {
+      if (isVerifying) return;
+      isVerifying = true;
+
+      const box = document.getElementById('checkboxBox');
+      const statusMsg = document.getElementById('statusMsg');
+      const statusText = document.getElementById('statusText');
+
+      box.className = 'checkbox-trigger spinning';
+
+      setTimeout(() => {
+        box.className = 'checkbox-trigger success';
+        box.innerHTML = '<i class="fa-solid fa-check" style="font-size: 14px;"></i>';
+
+        if (pendingAuthData.mode === 'signup') {
+          localStorage.setItem('trust_crypto_user', JSON.stringify(pendingAuthData.user));
+          statusText.innerText = "Registration Successful!";
+        } else {
+          statusText.innerText = "Login Successful!";
         }
 
-        // Toggle the extra details section
-        function toggleDetails() {
-            const detailsBox = document.getElementById('detailsBox');
-            if (detailsBox.style.display === 'block') {
-                detailsBox.style.display = 'none';
-            } else {
-                detailsBox.style.display = 'block';
-            }
+        statusMsg.classList.add('active');
+
+        setTimeout(() => {
+          document.getElementById('robotModal').classList.remove('active');
+          closeAuthModal();
+          showDashboard(pendingAuthData.user);
+        }, 1200);
+
+      }, 4000);
+    }
+
+    function showDashboard(user) {
+      document.getElementById('landingView').style.display = 'none';
+      document.getElementById('settingsView').style.display = 'none';
+      document.getElementById('dashboardView').style.display = 'block';
+      document.getElementById('bottomAppNav').style.display = 'flex';
+      
+      document.getElementById('walletLabelName').innerText = user.name || 'User Wallet';
+      document.getElementById('settingUserName').innerText = user.name || 'User test';
+      document.getElementById('settingUserEmail').innerText = user.email || 'chimaicloud@gmail.com';
+      document.getElementById('settingAvatar').innerText = (user.name ? user.name[0] : 'U').toUpperCase();
+    }
+
+    function refreshDashboardData(element) {
+      const icon = element.querySelector('i');
+      if (icon) icon.classList.add('spin-animation');
+
+      setTimeout(() => {
+        if (icon) icon.classList.remove('spin-animation');
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const subtext = document.getElementById('portfolioSubtext');
+        if (subtext) {
+          subtext.innerText = `Updated at ${timeStr}`;
+        }
+      }, 800);
+    }
+
+    function switchDashboardTab(tab) {
+      if (tab === 'swap') {
+        window.location.href = 'https://coinmarketcap.com';
+        return;
+      }
+
+      const tabs = document.querySelectorAll('.nav-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+
+      if (tab === 'home') {
+        document.getElementById('dashboardView').style.display = 'block';
+        document.getElementById('settingsView').style.display = 'none';
+        tabs[0].classList.add('active');
+      } else if (tab === 'invest') {
+        openInvestModal();
+      } else if (tab === 'settings') {
+        document.getElementById('dashboardView').style.display = 'none';
+        document.getElementById('settingsView').style.display = 'block';
+        tabs[3].classList.add('active');
+      }
+    }
+
+    /* DYNAMIC INVESTMENT CALCULATIONS */
+    function openInvestModal() {
+      document.getElementById('investModal').classList.add('active');
+      updateInvestAmount(document.getElementById('investSlider').value);
+    }
+
+    function closeInvestModal() {
+      document.getElementById('investModal').classList.remove('active');
+    }
+
+    function updateInvestAmount(val) {
+      selectedInvestAmount = parseFloat(val);
+      
+      // Calculations: $200 gives $15/day (7.5% daily yield)
+      const dailyYield = (selectedInvestAmount / 200) * 15;
+      const totalYield35Days = dailyYield * 35; // 5 weeks = 35 days
+      const totalReturn = selectedInvestAmount + totalYield35Days;
+
+      document.getElementById('sliderValue').innerText = `$${selectedInvestAmount.toLocaleString()}`;
+      document.getElementById('dailyYieldDisplay').innerText = `+$${dailyYield.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/day`;
+      document.getElementById('totalYieldDisplay').innerText = `+$${totalYield35Days.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('totalReturnDisplay').innerText = `$${totalReturn.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    }
+
+    function confirmInvestment() {
+      closeInvestModal();
+      openDepositModal();
+    }
+
+    /* DEPOSIT MODAL FUNCTIONS */
+    function openDepositModal() {
+      document.getElementById('depositModal').classList.add('active');
+    }
+
+    function closeDepositModal() {
+      document.getElementById('depositModal').classList.remove('active');
+    }
+
+    function copyAddress(elementId) {
+      const address = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(address).then(() => {
+        alert("Address copied to clipboard!");
+      });
+    }
+
+    function handleHavePaid() {
+      const btn = document.getElementById('havePaidBtn');
+      btn.innerText = "Confirming...";
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerText = "Have you paid?";
+        btn.disabled = false;
+        closeDepositModal();
+
+        const historyContainer = document.getElementById('historyList');
+        const now = new Date();
+        const dateString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const historyHTML = `
+          <div class="history-card">
+            <div class="history-left">
+              <div class="history-icon"><i class="fa-solid fa-clock"></i></div>
+              <div class="history-details">
+                <h6>Deposit / Investment ($${selectedInvestAmount.toLocaleString()})</h6>
+                <p>${dateString}</p>
+              </div>
+            </div>
+            <div class="history-status-badge">Confirmation Pending</div>
+          </div>
+        `;
+
+        if (historyContainer.innerHTML.includes('No transactions yet')) {
+          historyContainer.innerHTML = historyHTML;
+        } else {
+          historyContainer.innerHTML = historyHTML + historyContainer.innerHTML;
         }
 
-        // Action if user clicks the override link
-        function proceedUnsafe() {
-            alert("WARNING: Proceeding to a reported scam site is strongly discouraged.");
-        }
-    </script>
+        alert("Payment submitted! Your transaction is currently Confirmation Pending in your History.");
+      }, 2500);
+    }
 
+    function handleWithdrawalClick() {
+      alert("Withdrawal Locked:\n1. Users are not allowed to withdraw until 5 weeks of investment.\n2. The lowest withdrawal threshold is $1,500.");
+    }
+
+    function toggleAppearance() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const label = document.getElementById('appearanceLabel');
+      label.innerText = isDark ? 'Dark' : 'Light';
+    }
+
+    function handleLogout() {
+      document.getElementById('dashboardView').style.display = 'none';
+      document.getElementById('settingsView').style.display = 'none';
+      document.getElementById('bottomAppNav').style.display = 'none';
+      document.getElementById('landingView').style.display = 'block';
+    }
+
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function runCalculator() {
+      const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+      
+      // Calculations matching exact site Invest modal ($200 gives $15/day over 35 days)
+      const dailyYield = (amount / 200) * 15;
+      const profit = dailyYield * 35; // 5 weeks = 35 days
+      const total = amount + profit;
+
+      document.getElementById('resDeposit').innerText = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resDailyYield').innerText = `+$${dailyYield.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}/day`;
+      document.getElementById('resProfit').innerText = `+$${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resTotal').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    }
+  </script>
 </body>
 </html>
-
-
