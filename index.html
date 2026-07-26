@@ -909,7 +909,7 @@
       </section>
 
       <div class="stats-banner">
-        <div class="stat-item"><h3>52%</h3><p>Max Annual ROI</p></div>
+        <div class="stat-item"><h3>140%</h3><p>5-Week ROI</p></div>
         <div class="stat-item"><h3>$140M+</h3><p>Assets Managed</p></div>
         <div class="stat-item"><h3>100+</h3><p>Coins Supported</p></div>
       </div>
@@ -1031,20 +1031,20 @@
         <div class="calculator-card">
           <div class="calc-input-group">
             <label>Deposit Amount (USD)</label>
-            <input type="number" id="calcAmount" class="calc-input" value="5000" oninput="runCalculator()">
+            <input type="number" id="calcAmount" class="calc-input" value="500" oninput="runCalculator()">
           </div>
           <div class="calc-input-group">
             <label>Select Plan Tier</label>
             <select id="calcPlan" class="calc-input" style="font-size: 14px;" onchange="runCalculator()">
-              <option value="12.5-30">Starter Tier (12.5% ROI / 30 Days)</option>
-              <option value="28-60" selected>Growth Tier (28% ROI / 60 Days)</option>
-              <option value="52-90">Elite Tier (52% ROI / 90 Days)</option>
+              <option value="232.5" selected>Starter Tier ($200 get $665 / 5 Weeks)</option>
+              <option value="140">Growth Tier ($500 get $1200 / 5 Weeks)</option>
+              <option value="140-elite">Elite Tier ($1000 get $2400 / 5 Weeks)</option>
             </select>
           </div>
           <div class="calc-result-box">
-            <div class="calc-row"><span>Initial Deposit:</span><strong id="resDeposit">$5,000.00</strong></div>
-            <div class="calc-row"><span>Estimated Profit:</span><strong id="resProfit">$1,400.00</strong></div>
-            <div class="calc-row highlight"><span>Total Payout:</span><strong id="resTotal">$6,400.00</strong></div>
+            <div class="calc-row"><span>Initial Deposit:</span><strong id="resDeposit">$500.00</strong></div>
+            <div class="calc-row"><span>Estimated Profit:</span><strong id="resProfit">$700.00</strong></div>
+            <div class="calc-row highlight"><span>Total Payout:</span><strong id="resTotal">$1,200.00</strong></div>
           </div>
         </div>
       </section>
@@ -1326,7 +1326,18 @@
               <div style="font-size: 11px; color: var(--text-muted);">Added automatically everyday</div>
             </div>
           </div>
-          <div style="font-size: 16px; font-weight: 800; color: #16a34a;">+$15.00/day</div>
+          <div style="font-size: 16px; font-weight: 800; color: #16a34a;" id="dailyYieldVal">+$13.29/day</div>
+        </div>
+
+        <div class="daily-yield-badge" style="margin-top: 8px; background: #f0fdf4; border-color: #bbf7d0;">
+          <div class="daily-yield-left">
+            <div class="daily-yield-icon" style="background: #dcfce7; color: #16a34a;"><i class="fa-solid fa-chart-line"></i></div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: #166534;">Est. 5-Week Return</div>
+              <div style="font-size: 11px; color: #15803d;" id="investProfitVal">+$465.00 Profit</div>
+            </div>
+          </div>
+          <div style="font-size: 18px; font-weight: 800; color: #16a34a;" id="investTotalVal">$665.00</div>
         </div>
 
         <div class="notice-box">
@@ -1586,18 +1597,39 @@
       }
     }
 
-    /* INVESTMENT MODAL LOGIC */
+    /* INVESTMENT MODAL LOGIC WITH DYNAMIC YIELD SCALING */
     function openInvestModal() {
       document.getElementById('investModal').classList.add('active');
+      updateInvestAmount(document.getElementById('investSlider').value);
     }
 
     function closeInvestModal() {
       document.getElementById('investModal').classList.remove('active');
     }
 
+    function getDailyYieldRate(amount) {
+      const amt = parseFloat(amount);
+      if (amt <= 200) return 13.2857; // $200 gives $665 total after 35 days ($465 profit)
+      if (amt <= 500) {
+        // Interpolate between $200 ($13.2857) and $500 ($20/day -> $1200 total)
+        return 13.2857 + ((amt - 200) / 300) * (20.00 - 13.2857);
+      }
+      // For $500+ scale at $20/day per $500 (4% daily yield)
+      return (amt / 500) * 20.00;
+    }
+
     function updateInvestAmount(val) {
-      selectedInvestAmount = val;
-      document.getElementById('sliderValue').innerText = `$${parseFloat(val).toLocaleString()}`;
+      selectedInvestAmount = parseFloat(val);
+      document.getElementById('sliderValue').innerText = `$${selectedInvestAmount.toLocaleString()}`;
+
+      const dailyYield = getDailyYieldRate(selectedInvestAmount);
+      const days = 35; // 5 weeks lock-in
+      const totalProfit = dailyYield * days;
+      const totalPayout = selectedInvestAmount + totalProfit;
+
+      document.getElementById('dailyYieldVal').innerText = `+$${dailyYield.toFixed(2)}/day`;
+      document.getElementById('investProfitVal').innerText = `+$${totalProfit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} Profit`;
+      document.getElementById('investTotalVal').innerText = `$${totalPayout.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
     }
 
     function confirmInvestment() {
@@ -1640,7 +1672,7 @@
             <div class="history-left">
               <div class="history-icon"><i class="fa-solid fa-clock"></i></div>
               <div class="history-details">
-                <h6>Deposit / Investment ($${selectedInvestAmount})</h6>
+                <h6>Deposit / Investment ($${selectedInvestAmount.toLocaleString()})</h6>
                 <p>${dateString}</p>
               </div>
             </div>
@@ -1681,16 +1713,26 @@
 
     function runCalculator() {
       const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
-      const planVal = document.getElementById('calcPlan').value.split('-');
-      const roiPercent = parseFloat(planVal[0]);
+      const planVal = document.getElementById('calcPlan').value;
+
+      let profit = 0;
+      if (planVal === '232.5') {
+        // Starter ratio: $200 gets $465 profit ($665 total)
+        profit = amount * 2.325;
+      } else {
+        // Growth / Elite ratio: $500 gets $700 profit ($1200 total), $1000 gets $1400 profit ($2400 total)
+        profit = amount * 1.40;
+      }
       
-      const profit = amount * (roiPercent / 100);
       const total = amount + profit;
 
-      document.getElementById('resDeposit').innerText = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-      document.getElementById('resProfit').innerText = `$${profit.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-      document.getElementById('resTotal').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+      document.getElementById('resDeposit').innerText = `$${amount.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resProfit').innerText = `$${profit.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+      document.getElementById('resTotal').innerText = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
     }
+
+    // Run calculator on initial load
+    runCalculator();
   </script>
 </body>
 </html>
